@@ -106,15 +106,78 @@
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
+            
           <!-- Floating Multiline Textfield -->
           <div class="row">
-          <div class="col-md-4">
-            <div id="map">
-              <h5 style="">Device Name</h5><button id="button" style="">Button One</button><button id="button" style="">Button Two</button>
-              <p>Lorem Ipsum</p>
-            </div>
+          <canvas id="chart1" width="200" height="300"></canvas>
           </div>
-          </div>
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+          
+               <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAlddQUrubiNgaVIfOyuuyOGbdDjcC9Od8",
+        authDomain: "iotplatform-50b57.firebaseapp.com",
+        databaseURL: "https://iotplatform-50b57.firebaseio.com",
+        storageBucket: "iotplatform-50b57.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.js"></script>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+        var firebaseData = new Array;
+        var firebaseNames = new Array;
+        firebase.database().ref('users/brian/devices').once("value", function(snapshot) {
+            var data = snapshot.val();
+            for (var item in data) {
+                firebaseData.push(parseInt(data[item].value))
+                firebaseNames.push(data[item].name)
+            }
+            var ctx = $("#myChart");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+        
+        labels: firebaseNames,
+        datasets: [{
+            label: 'Temperature',
+            data: firebaseData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+        })
+        })
+        
+    </script>
 <form action="#">
 </form>
           <div class="demo-charts mdl-cell mdl-cell--12-col mdl-grid">
@@ -180,5 +243,17 @@
       </svg>
       <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
     <script src="../../material.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAlddQUrubiNgaVIfOyuuyOGbdDjcC9Od8",
+        authDomain: "iotplatform-50b57.firebaseapp.com",
+        databaseURL: "https://iotplatform-50b57.firebaseio.com",
+        storageBucket: "iotplatform-50b57.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+    <!--<script href="heur.js"></script>-->
   </body>
 </html>

@@ -239,3 +239,17 @@ _:-ms-input-placeholder, :root .demo-graph {
       -ms-flex-align: center;
           align-items: center;
 }
+
+.device {
+  display: block;
+  margin-top: 40px;
+  height: 80px;
+  border: 2px solid grey;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.device h5 {
+  display: inline;
+}
